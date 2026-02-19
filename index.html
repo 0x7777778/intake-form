@@ -142,6 +142,7 @@
             font-size: 14px;
             resize: vertical;
             transition: all 0.2s;
+            height: auto;
         }
         
         .question-input:focus {
@@ -350,9 +351,18 @@
             
             .question-input,
             .inline-input {
-                border: none;
-                border-bottom: 1px solid #ccc;
-                min-height: 50px;
+                border: 1px solid #ccc;
+                min-height: auto;
+                height: auto;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                overflow: visible;
+                page-break-inside: avoid;
+            }
+            
+            textarea.question-input {
+                height: auto !important;
+                min-height: fit-content;
             }
         }
         
@@ -415,6 +425,30 @@
             cursor: not-allowed;
             transform: none;
         }
+        
+        .print-only {
+            display: none;
+        }
+        
+        @media print {
+            .question-input,
+            .inline-input,
+            td input,
+            td textarea {
+                display: none !important;
+            }
+            
+            .print-only {
+                display: block !important;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                border: 1px solid #ccc;
+                padding: 8px 10px;
+                border-radius: 4px;
+                min-height: 20px;
+                page-break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>
@@ -467,7 +501,7 @@
                 <input type="text" placeholder="e.g., San Francisco, New York, Remote">
             </div>
             <div class="meta-field">
-                <label>Date</label>
+                <label>Today is</label>
                 <input type="date">
             </div>
         </div>
@@ -478,12 +512,14 @@
                 
                 <div class="question">
                     <label class="question-label">Why are we hiring for this position?</label>
-                    <textarea class="question-input" placeholder="Is this a new role, backfill, or growth?"></textarea>
+                    <textarea class="question-input" placeholder="Is this a new role, backfill, or growth?" oninput="this.nextElementSibling.textContent = this.value"></textarea>
+                    <div class="print-only"></div>
                 </div>
                 
                 <div class="question">
                     <label class="question-label">Who will this person report to?</label>
-                    <input type="text" class="inline-input" style="width: 100%;" placeholder="Name and title">
+                    <input type="text" class="inline-input" style="width: 100%;" placeholder="Name and title" oninput="this.nextElementSibling.textContent = this.value">
+                    <div class="print-only"></div>
                 </div>
                 
                 <div class="question">
@@ -496,12 +532,17 @@
                             <input type="checkbox" name="reports"> No
                         </label>
                     </div>
-                    <input type="text" class="inline-input" style="width: 200px; margin-top: 12px;" placeholder="If yes, how many?">
+                    <input type="text" class="inline-input" style="width: 200px; margin-top: 12px;" placeholder="If yes, how many?" oninput="this.nextElementSibling.textContent = this.value">
+                    <div class="print-only"></div>
+                    <label class="question-label" style="margin-top: 20px; margin-bottom: 8px;">If yes, please list their names here:</label>
+                    <textarea class="question-input" style="min-height: 60px;" placeholder="List names" oninput="this.nextElementSibling.textContent = this.value"></textarea>
+                    <div class="print-only"></div>
                 </div>
                 
                 <div class="question">
                     <label class="question-label">What does success look like in the first 6 months?</label>
-                    <textarea class="question-input" placeholder="Key milestones and outcomes"></textarea>
+                    <textarea class="question-input" placeholder="Key milestones and outcomes" oninput="this.nextElementSibling.textContent = this.value"></textarea>
+                    <div class="print-only"></div>
                 </div>
                 
                 <div class="question">
@@ -519,22 +560,26 @@
                 
                 <div class="question">
                     <label class="question-label">Describe your ideal candidate in 3-5 traits:</label>
-                    <textarea class="question-input" placeholder="e.g., Collaborative, detail-oriented, systems thinker..."></textarea>
+                    <textarea class="question-input" placeholder="e.g., Collaborative, detail-oriented, systems thinker..." oninput="this.nextElementSibling.textContent = this.value"></textarea>
+                    <div class="print-only"></div>
                 </div>
                 
                 <div class="question">
                     <label class="question-label">Must-have skills and experience:</label>
-                    <textarea class="question-input" placeholder="Non-negotiable skills"></textarea>
+                    <textarea class="question-input" placeholder="Non-negotiable skills" oninput="this.nextElementSibling.textContent = this.value"></textarea>
+                    <div class="print-only"></div>
                 </div>
                 
                 <div class="question">
                     <label class="question-label">Nice-to-have skills:</label>
-                    <textarea class="question-input" placeholder="Preferred but not required"></textarea>
+                    <textarea class="question-input" placeholder="Preferred but not required" oninput="this.nextElementSibling.textContent = this.value"></textarea>
+                    <div class="print-only"></div>
                 </div>
                 
                 <div class="question">
                     <label class="question-label">What's non-negotiable for this role?</label>
-                    <textarea class="question-input" placeholder="Deal-breakers or absolute requirements"></textarea>
+                    <textarea class="question-input" placeholder="Deal-breakers or absolute requirements" oninput="this.nextElementSibling.textContent = this.value"></textarea>
+                    <div class="print-only"></div>
                 </div>
             </div>
             
@@ -543,17 +588,20 @@
                 
                 <div class="question">
                     <label class="question-label">What makes working on your team great?</label>
-                    <textarea class="question-input" placeholder="Unique selling points"></textarea>
+                    <textarea class="question-input" placeholder="Unique selling points" oninput="this.nextElementSibling.textContent = this.value"></textarea>
+                    <div class="print-only"></div>
                 </div>
                 
                 <div class="question">
                     <label class="question-label">Where can this person grow in the organization?</label>
-                    <textarea class="question-input" placeholder="Career path and opportunities"></textarea>
+                    <textarea class="question-input" placeholder="Career path and opportunities" oninput="this.nextElementSibling.textContent = this.value"></textarea>
+                    <div class="print-only"></div>
                 </div>
                 
                 <div class="question">
                     <label class="question-label">What's your 30-second pitch to your dream candidate?</label>
-                    <textarea class="question-input" placeholder="Your elevator pitch"></textarea>
+                    <textarea class="question-input" placeholder="Your elevator pitch" oninput="this.nextElementSibling.textContent = this.value"></textarea>
+                    <div class="print-only"></div>
                 </div>
             </div>
             
@@ -571,29 +619,29 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="text" placeholder="Screening Call"></td>
-                                <td><input type="text" placeholder="Recruiter name"></td>
-                                <td><textarea placeholder="Basic fit, motivation, logistics"></textarea></td>
+                                <td><input type="text" placeholder="Screening Call" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><input type="text" placeholder="Recruiter name" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><textarea placeholder="Basic fit, motivation, logistics" oninput="this.nextElementSibling.textContent = this.value"></textarea><div class="print-only"></div></td>
                             </tr>
                             <tr>
-                                <td><input type="text" placeholder="Stage 1"></td>
-                                <td><input type="text" placeholder="Interviewer name(s)"></td>
-                                <td><textarea placeholder="Technical skills, experience"></textarea></td>
+                                <td><input type="text" placeholder="Stage 1" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><input type="text" placeholder="Interviewer name(s)" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><textarea placeholder="Technical skills, experience" oninput="this.nextElementSibling.textContent = this.value"></textarea><div class="print-only"></div></td>
                             </tr>
                             <tr>
-                                <td><input type="text" placeholder="Stage 2"></td>
-                                <td><input type="text" placeholder="Interviewer name(s)"></td>
-                                <td><textarea placeholder="Deep dive on skills"></textarea></td>
+                                <td><input type="text" placeholder="Stage 2" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><input type="text" placeholder="Interviewer name(s)" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><textarea placeholder="Deep dive on skills" oninput="this.nextElementSibling.textContent = this.value"></textarea><div class="print-only"></div></td>
                             </tr>
                             <tr>
-                                <td><input type="text" placeholder="Stage 3"></td>
-                                <td><input type="text" placeholder="Interviewer name(s)"></td>
-                                <td><textarea placeholder="Team fit, collaboration"></textarea></td>
+                                <td><input type="text" placeholder="Stage 3" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><input type="text" placeholder="Interviewer name(s)" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><textarea placeholder="Team fit, collaboration" oninput="this.nextElementSibling.textContent = this.value"></textarea><div class="print-only"></div></td>
                             </tr>
                             <tr>
-                                <td><input type="text" placeholder="Final Stage"></td>
-                                <td><input type="text" placeholder="Interviewer name(s)"></td>
-                                <td><textarea placeholder="Culture, values, leadership"></textarea></td>
+                                <td><input type="text" placeholder="Final Stage" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><input type="text" placeholder="Interviewer name(s)" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><textarea placeholder="Culture, values, leadership" oninput="this.nextElementSibling.textContent = this.value"></textarea><div class="print-only"></div></td>
                             </tr>
                         </tbody>
                     </table>
@@ -614,28 +662,28 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="text" placeholder="Must-Have Skill 1"></td>
-                                <td><textarea placeholder="Examples and observations"></textarea></td>
+                                <td><input type="text" placeholder="Must-Have Skill 1" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><textarea placeholder="Examples and observations" oninput="this.nextElementSibling.textContent = this.value"></textarea><div class="print-only"></div></td>
                             </tr>
                             <tr>
-                                <td><input type="text" placeholder="Must-Have Skill 2"></td>
-                                <td><textarea placeholder="Examples and observations"></textarea></td>
+                                <td><input type="text" placeholder="Must-Have Skill 2" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><textarea placeholder="Examples and observations" oninput="this.nextElementSibling.textContent = this.value"></textarea><div class="print-only"></div></td>
                             </tr>
                             <tr>
-                                <td><input type="text" placeholder="Must-Have Skill 3"></td>
-                                <td><textarea placeholder="Examples and observations"></textarea></td>
+                                <td><input type="text" placeholder="Must-Have Skill 3" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><textarea placeholder="Examples and observations" oninput="this.nextElementSibling.textContent = this.value"></textarea><div class="print-only"></div></td>
                             </tr>
                             <tr>
-                                <td><input type="text" placeholder="Must-Have Skill 4"></td>
-                                <td><textarea placeholder="Examples and observations"></textarea></td>
+                                <td><input type="text" placeholder="Must-Have Skill 4" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><textarea placeholder="Examples and observations" oninput="this.nextElementSibling.textContent = this.value"></textarea><div class="print-only"></div></td>
                             </tr>
                             <tr>
-                                <td><input type="text" placeholder="Must-Have Skill 5"></td>
-                                <td><textarea placeholder="Examples and observations"></textarea></td>
+                                <td><input type="text" placeholder="Must-Have Skill 5" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><textarea placeholder="Examples and observations" oninput="this.nextElementSibling.textContent = this.value"></textarea><div class="print-only"></div></td>
                             </tr>
                             <tr>
-                                <td><input type="text" placeholder="Must-Have Skill 6"></td>
-                                <td><textarea placeholder="Examples and observations"></textarea></td>
+                                <td><input type="text" placeholder="Must-Have Skill 6" oninput="this.nextElementSibling.textContent = this.value"><div class="print-only"></div></td>
+                                <td><textarea placeholder="Examples and observations" oninput="this.nextElementSibling.textContent = this.value"></textarea><div class="print-only"></div></td>
                             </tr>
                         </tbody>
                     </table>
@@ -649,4 +697,3 @@
     </div>
 </body>
 </html>
-
