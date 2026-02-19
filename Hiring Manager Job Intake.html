@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiring Manager Intake Template</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8fafb 0%, #ffffff 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 69, 124, 0.08);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #003087 0%, #00457C 100%);
+            color: white;
+            padding: 48px 48px 40px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            font-size: 15px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            padding: 32px 48px;
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .meta-field select:focus {
+            outline: none;
+            border-bottom-color: #00457C;
+        }
+        
+        .meta-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .meta-field label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #00457C;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .meta-field input {
+            border: none;
+            border-bottom: 2px solid #e5e7eb;
+            padding: 10px 0;
+            font-size: 15px;
+            font-family: inherit;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+        
+        .meta-field input:focus {
+            outline: none;
+            border-bottom-color: #00457C;
+        }
+        
+        .content {
+            padding: 48px;
+        }
+        
+        .section {
+            margin-bottom: 48px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #00457C;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #00457C;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, #003087 0%, #00457C 100%);
+            border-radius: 2px;
+        }
+        
+        .question {
+            margin-bottom: 28px;
+        }
+        
+        .question-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .question-input {
+            width: 100%;
+            min-height: 80px;
+            padding: 14px 16px;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            transition: all 0.2s;
+        }
+        
+        .question-input:focus {
+            outline: none;
+            border-color: #00457C;
+            box-shadow: 0 0 0 3px rgba(0, 69, 124, 0.08);
+        }
+        
+        .inline-group {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .inline-input {
+            padding: 10px 14px;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .inline-input:focus {
+            outline: none;
+            border-color: #00457C;
+            box-shadow: 0 0 0 3px rgba(0, 69, 124, 0.08);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #00457C;
+        }
+        
+        .numbered-list {
+            counter-reset: item;
+            list-style: none;
+        }
+        
+        .numbered-list li {
+            counter-increment: item;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 12px;
+        }
+        
+        .numbered-list li::before {
+            content: counter(item);
+            background: #00457C;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+            margin-top: 12px;
+        }
+        
+        .numbered-list input {
+            flex: 1;
+            padding: 12px 14px;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 24px 0;
+            border-radius: 8px;
+            border: 1.5px solid #e5e7eb;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        th {
+            background: #00457C;
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+        
+        td input,
+        td textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 13px;
+        }
+        
+        td textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .rating-scale {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        
+        .rating-scale h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #00457C;
+            margin-bottom: 12px;
+        }
+        
+        .rating-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+        
+        .rating-item strong {
+            min-width: 100px;
+            color: #1a1a1a;
+        }
+        
+        .rating-item span {
+            color: #6b7280;
+        }
+        
+        .recommendation {
+            display: flex;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .rec-option {
+            flex: 1;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .rec-option:hover {
+            border-color: #00457C;
+            background: #f9fafb;
+        }
+        
+        .rec-option input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #00457C;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .question-input,
+            .inline-input {
+                border: none;
+                border-bottom: 1px solid #ccc;
+                min-height: 50px;
+            }
+        }
+        
+        @media print {
+            .submit-container {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .meta-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 24px;
+            }
+            
+            .content {
+                padding: 32px 24px;
+            }
+            
+            .header {
+                padding: 32px 24px;
+            }
+            
+            .recommendation {
+                flex-direction: column;
+            }
+        }
+        
+        .submit-container {
+            padding: 48px;
+            padding-top: 0;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px 32px;
+            background: linear-gradient(135deg, #003087 0%, #00457C 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 69, 124, 0.2);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 69, 124, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Hiring Manager Intake</h1>
+            <p>A comprehensive guide to understanding your hiring needs</p>
+        </div>
+        
+        <div class="meta-grid">
+            <div class="meta-field">
+                <label>Position Title</label>
+                <input type="text" placeholder="e.g., Senior Product Designer">
+            </div>
+            <div class="meta-field">
+                <label>Hiring Manager</label>
+                <input type="text" placeholder="Full name">
+            </div>
+            <div class="meta-field">
+                <label>Department</label>
+                <input type="text" placeholder="e.g., Product & Design">
+            </div>
+            <div class="meta-field">
+                <label>REQ ID</label>
+                <input type="text" placeholder="e.g., REQ-2024-001">
+            </div>
+            <div class="meta-field">
+                <label>Level</label>
+                <select style="border: none; border-bottom: 2px solid #e5e7eb; padding: 10px 0; font-size: 15px; font-family: inherit; background: transparent; transition: border-color 0.2s; width: 100%;">
+                    <option value="">Select level</option>
+                    <option value="CL4">CL4</option>
+                    <option value="CL5">CL5</option>
+                    <option value="CL6">CL6</option>
+                    <option value="CL7">CL7</option>
+                    <option value="CL8">CL8</option>
+                    <option value="CL9">CL9</option>
+                </select>
+            </div>
+            <div class="meta-field">
+                <label>Work Location</label>
+                <select style="border: none; border-bottom: 2px solid #e5e7eb; padding: 10px 0; font-size: 15px; font-family: inherit; background: transparent; transition: border-color 0.2s; width: 100%;">
+                    <option value="">Select location</option>
+                    <option value="On-site">On-site</option>
+                    <option value="Hybrid">Hybrid</option>
+                    <option value="Remote">Remote</option>
+                </select>
+            </div>
+            <div class="meta-field">
+                <label>Office</label>
+                <input type="text" placeholder="e.g., San Francisco, New York, Remote">
+            </div>
+            <div class="meta-field">
+                <label>Date</label>
+                <input type="date">
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">The Role</h2>
+                
+                <div class="question">
+                    <label class="question-label">Why are we hiring for this position?</label>
+                    <textarea class="question-input" placeholder="Is this a new role, backfill, or growth?"></textarea>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">Who will this person report to?</label>
+                    <input type="text" class="inline-input" style="width: 100%;" placeholder="Name and title">
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">Will this person have direct reports?</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="reports"> Yes
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="reports"> No
+                        </label>
+                    </div>
+                    <input type="text" class="inline-input" style="width: 200px; margin-top: 12px;" placeholder="If yes, how many?">
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">What does success look like in the first 6 months?</label>
+                    <textarea class="question-input" placeholder="Key milestones and outcomes"></textarea>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">What are the 3 primary objectives for this role in year one?</label>
+                    <ol class="numbered-list">
+                        <li><input type="text" placeholder="First objective"></li>
+                        <li><input type="text" placeholder="Second objective"></li>
+                        <li><input type="text" placeholder="Third objective"></li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">The Ideal Candidate</h2>
+                
+                <div class="question">
+                    <label class="question-label">Describe your ideal candidate in 3-5 traits:</label>
+                    <textarea class="question-input" placeholder="e.g., Collaborative, detail-oriented, systems thinker..."></textarea>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">Must-have skills and experience:</label>
+                    <textarea class="question-input" placeholder="Non-negotiable skills"></textarea>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">Nice-to-have skills:</label>
+                    <textarea class="question-input" placeholder="Preferred but not required"></textarea>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">What's non-negotiable for this role?</label>
+                    <textarea class="question-input" placeholder="Deal-breakers or absolute requirements"></textarea>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Team &amp; Culture</h2>
+                
+                <div class="question">
+                    <label class="question-label">What makes working on your team great?</label>
+                    <textarea class="question-input" placeholder="Unique selling points"></textarea>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">Where can this person grow in the organization?</label>
+                    <textarea class="question-input" placeholder="Career path and opportunities"></textarea>
+                </div>
+                
+                <div class="question">
+                    <label class="question-label">What's your 30-second pitch to your dream candidate?</label>
+                    <textarea class="question-input" placeholder="Your elevator pitch"></textarea>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Interview Process</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">Stage</th>
+                                <th style="width: 30%;">Interviewer(s)</th>
+                                <th style="width: 45%;">Focus Areas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" placeholder="Screening Call"></td>
+                                <td><input type="text" placeholder="Recruiter name"></td>
+                                <td><textarea placeholder="Basic fit, motivation, logistics"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" placeholder="Stage 1"></td>
+                                <td><input type="text" placeholder="Interviewer name(s)"></td>
+                                <td><textarea placeholder="Technical skills, experience"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" placeholder="Stage 2"></td>
+                                <td><input type="text" placeholder="Interviewer name(s)"></td>
+                                <td><textarea placeholder="Deep dive on skills"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" placeholder="Stage 3"></td>
+                                <td><input type="text" placeholder="Interviewer name(s)"></td>
+                                <td><textarea placeholder="Team fit, collaboration"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" placeholder="Final Stage"></td>
+                                <td><input type="text" placeholder="Interviewer name(s)"></td>
+                                <td><textarea placeholder="Culture, values, leadership"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Interview Rubric</h2>
+                <p style="color: #6b7280; font-size: 14px; margin-bottom: 24px;">Rate candidates 1-4 on each criterion. Use interview questions to elicit evidence for each area.</p>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 35%;">Competency</th>
+                                <th style="width: 65%;">Evidence / Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" placeholder="Must-Have Skill 1"></td>
+                                <td><textarea placeholder="Examples and observations"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" placeholder="Must-Have Skill 2"></td>
+                                <td><textarea placeholder="Examples and observations"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" placeholder="Must-Have Skill 3"></td>
+                                <td><textarea placeholder="Examples and observations"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" placeholder="Must-Have Skill 4"></td>
+                                <td><textarea placeholder="Examples and observations"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" placeholder="Must-Have Skill 5"></td>
+                                <td><textarea placeholder="Examples and observations"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" placeholder="Must-Have Skill 6"></td>
+                                <td><textarea placeholder="Examples and observations"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="submit-container">
+                <button class="submit-btn" onclick="window.print()">Print / Save as PDF</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
